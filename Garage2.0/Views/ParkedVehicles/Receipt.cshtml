@@ -1,0 +1,81 @@
+﻿@model Garage2._0.Models.ReceiptViewModel
+
+@{
+    ViewData["Title"] = "Receipt";
+}
+
+
+<div class="container">
+    <a asp-action="Index"><i class="fa fa-chevron-left " style="color:black;"></i></a>
+    <div class="row">
+        <div class="well col-xs-10 col-sm-10 col-md-6 col-xs-offset-1 col-sm-offset-1 col-md-offset-3">
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                    <address>
+                        <strong>Garage 2.0</strong>
+                        <br>
+                        Price per hour: $10
+                    </address>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 text-right">
+                </div>
+            </div>
+            <div class="row">
+                <div class="text-center">
+                    <h1>Receipt</h1>
+                </div>
+               
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.RegNr): @Html.DisplayFor(model => model.RegNr)</th>
+                            <th></th>
+                            <th class="text-center"></th>
+                            <th class="text-center">@Html.DisplayFor(model => model.Type)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="col-sm-2">@Html.DisplayNameFor(model => model.ArrivalTime)</td>
+                            <td></td>
+                            <td></td>
+                            <td class="col-sm-10 text-center">@Html.DisplayFor(model => model.ArrivalTime)</td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-9">@Html.DisplayNameFor(model => model.LeaveTime)</td>
+                            <td></td>
+                            <td></td>
+                            <td class="col-md-3 text-center">@Html.DisplayFor(model => model.LeaveTime)</td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-9">@Html.DisplayNameFor(model => model.TimeParked)</td>
+                            <td>    </td>
+                            <td>    </td>
+                            <td class="col-md-3 text-center">@Html.DisplayFor(model => model.TimeParked) Hours</td>
+                            <!--Kolla hur man kan skriva ut timespan-->
+                        </tr>
+                        <tr>
+                            <td>   </td>
+                            <td>   </td>
+                            <td class="text-right"><h4><strong>Total: </strong></h4></td>
+                            <td class="text-center text-danger"><h4><strong>$@Html.DisplayFor(model => model.Price)</strong></h4></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!--<button type="button" class="btn btn-success btn-lg btn-block">
+                    Pay Now   <span class="glyphicon glyphicon-chevron-right"></span>
+                </button></td>-->
+                
+            </div>
+            <div class="row">
+                <div class="text-center">
+                    <h2>Thank you for using the garage!</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@*<div>
+    <a asp-action="Index">Back to List</a>
+</div>*@
+

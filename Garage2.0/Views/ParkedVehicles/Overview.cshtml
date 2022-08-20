@@ -1,0 +1,90 @@
+﻿@using Garage2._0.Models.ViewModel
+
+@model IEnumerable<OverviewViewModel>
+
+@{
+    ViewData["Title"] = "Overview";
+}
+
+<h1>Overview</h1>
+
+@*<p>
+    <a asp-action="Create">Create New</a>
+</p>*@
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RegNr)
+            </th>
+         
+            <th>
+                @Html.DisplayNameFor(model => model.ArrivalTime)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RegNr)
+            </td>
+        
+            <td>
+                @Html.DisplayFor(modelItem => item.ArrivalTime)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Edit</a> |
+                <a href="#" id="btnDetails" class="btn btn-danger btn-sm" data-id="@item.Id">Details</a> |
+                <a href="#" id="btnDelete" class="btn btn-danger btn-sm" data-id="@item.Id">Check Out</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+@section scripts{
+<script>
+
+$(function () {
+    $("body").on('click', '#btnDelete', function () {
+        $("#myModel").modal("hide");
+
+        var id = $(this).attr('data-id');
+ 
+        $.ajax({
+            url: 'PartialDelete',
+            data: { id },
+            success: function (response) {
+                $("#postPartial").html(response);
+                $("#myModel").modal("show");
+            }
+        });
+    });
+});
+
+$(function () {
+    $("body").on('click', '#btnDetails', function () {
+        $("#myModel").modal("hide");
+
+        var id = $(this).attr('data-id');
+ 
+        $.ajax({
+            url: 'PartialDetails',
+            data: { id },
+            success: function (response) {
+                $("#postPartial").html(response);
+                $("#myModel").modal("show");
+            }
+        });
+    });
+});
+</script>
+}

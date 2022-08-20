@@ -1,0 +1,69 @@
+﻿@model Garage2._0.Models.Member
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1 class="heads">Details</h1>
+
+<div>
+    <h4 class="heads">Member</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PerNr)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PerNr)
+        </dd>
+    </dl>
+    <table class="table">
+    
+    <tbody>
+@foreach (var item in Model.Vehicles) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RegNr)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Color)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Brand)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Model)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NrOfWheels)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Member.Id)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id" style="font-weight: bold" class="btn btn-success mt-2">Edit</a> |
+    <a asp-action="Index1" style="font-weight: bold" class="btn btn-success mt-2">Back to List</a>
+</div>

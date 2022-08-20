@@ -1,0 +1,92 @@
+﻿@model Garage2._0.Models.CreateVehicleViewModel
+
+
+@inject IVehicleTypeService service
+@inject IMemberSelectService services
+
+@{
+    ViewData["Title"] = "Create";
+}
+ <link rel="stylesheet" href="~/Design/vehicle.css" asp-append-version="true" />
+
+<h1 class="heads">Happy to see you again!</h1>
+
+<h4 class="heads">Register your new vehicle in our garage</h4>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+  
+            <div class="form-group">
+                <label asp-for="MemberId" class="control-label"></label>
+            <select class="form-control" asp-for="MemberId" asp-items="@await services.GetMembersAsync()">
+                @if (Model is null)
+                 {
+                 <option selected="selected" value="">Choose ID</option>
+
+                 }
+              </select>       
+              <span asp-validation-for="MemberId" class="text-danger"></span>
+            </div>          
+            <div class="form-group">
+                <label asp-for="RegNr" class="control-label"></label>
+                <input asp-for="RegNr" class="form-control" />
+                <span asp-validation-for="RegNr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Color" class="control-label"></label>
+                <input asp-for="Color" class="form-control" />
+                <span asp-validation-for="Color" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Brand" class="control-label"></label>
+                <input asp-for="Brand" class="form-control" />
+                <span asp-validation-for="Brand" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Model" class="control-label"></label>
+                <input asp-for="Model" class="form-control" />
+                <span asp-validation-for="Model" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NrOfWheels" class="control-label"></label>
+                <input asp-for="NrOfWheels" class="form-control" />
+                <span asp-validation-for="NrOfWheels" class="text-danger"></span>
+            </div>
+                <div class="form-group">
+                <label asp-for="VehicleTypeEntityId" class="control-label"></label>
+                @*<partial name="_VehicleTypeInput" for="VehicleTypeEntityId" />*@
+                <select class="form-control" asp-for="VehicleTypeEntityId" asp-items="@await service.GetVehiclesType()">
+                @if (Model is null)
+                 {
+                 <option selected="selected" value="">Choose a type</option>
+
+                 }
+              </select>
+                <span asp-validation-for="VehicleTypeEntityId" class="text-danger"></span>
+            </div>
+@*              <div class="form-group">
+                <label asp-for="VehicleTypeSize" class="control-label"></label>
+                <input asp-for="VehicleTypeSize" class="form-control" />
+                <span asp-validation-for="VehicleTypeSize" class="text-danger"></span>
+            </div>*@
+           <br />
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-success" />
+                 <a asp-action="Index" class=" btn btn-success style="font-weight: bold">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+<br />
+
+@*<div>
+    <a asp-action="Index" class=" btn btn-success style="font-weight: bold">Back to List</a>
+</div>*@
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+}

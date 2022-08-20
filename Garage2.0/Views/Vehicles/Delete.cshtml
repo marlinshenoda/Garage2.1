@@ -1,0 +1,80 @@
+﻿@model Garage2._0.Models.ViewModels.VehicleDeleteViewModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Vehicle</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.RegNr)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.RegNr)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Color)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Color)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Brand)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Brand)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Model)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Model)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NrOfWheels)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NrOfWheels)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PerNr)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PerNr)
+        </dd>
+    </dl>
+ 
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        @if(Model.Parked == true) { 
+            <a disabled  class="btn btn-secondary">Delete</a>
+        }
+        else
+        {
+            <input type="submit" value="Delete" class="btn btn-danger" />
+            //<a asp-controller="Vehicle" asp-action="Delete" asp-route-id="@item.Id" data-id="@item.Id" id="addToCartButton" class="btn btn-danger addToCart">Add to cart</a>
+        }
+         |
+        <a asp-action="Index">Back to List</a>
+        @if(Model.Parked == true) { 
+            <div class="text-danger">Can't delete a parked vehicle</div>
+        }
+    </form>
+</div>

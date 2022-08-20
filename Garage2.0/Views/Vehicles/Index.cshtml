@@ -1,0 +1,96 @@
+﻿@using Garage2._0.Models.ViewModels
+@model IEnumerable<VehicleIndexViewModel>
+@inject IVehicleTypeService service
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="heads">List of registered vehicles</h1>
+
+<p>
+    <a asp-action="Create" class="btn2 btn-success  style="font-weight: bold">Register a new vehicle</a>
+</p>
+<table class="table">
+    <thead >
+        <tr>   
+            <th >
+                @Html.DisplayNameFor(model => model.MemberFullName)
+            </th>
+              <th>
+                @Html.DisplayNameFor(model => model.MemberPerNr)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RegNr)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Color)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Brand)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Model)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NrOfWheels)
+            </th> 
+           
+           
+             
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MemberFullName)
+            </td>
+               <td>
+                @Html.DisplayFor(modelItem => item.MemberPerNr)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RegNr)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Color)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Brand)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Model)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NrOfWheels)
+            </td> 
+            
+          
+            
+             
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id"class="btn btn-success btn-sm">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-success btn-sm">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+@section Scripts {
+<script>
+function openSuccessMOdel(strMessage) {
+    var myDiv = document.getElementById("MyModalAlert");
+    myDiv.innerHTML = strMessage;
+    $("#SuccessfulMessage").modal("show");
+   
+};
+$(document).ready(function(){
+    var msg = "@TempData["SuccessMessage"]";
+
+     if (msg) {
+        openSuccessMOdel(msg);
+    }
+});
+</script>}

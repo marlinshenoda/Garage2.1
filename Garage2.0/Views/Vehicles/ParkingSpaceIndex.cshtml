@@ -1,0 +1,86 @@
+﻿@using Garage2._0.Models.ViewModels
+@inject IVehicleTypeService service
+@model IEnumerable<ParkingSpacesViewModel>
+
+@{
+    ViewData["Title"] = "Parking Spaces";
+}
+
+<h1 class="heads">Check parking details here!</h1>
+
+<p>
+    <a asp-action="Park" class="btn2 btn-success style="font-weight: bold">Park a vehicle</a>
+</p>
+<form method="get" asp-action="Filter" asp-controller="Vehicles" >
+    <div class="input-group mb-3 mt-3">
+        <input type="text" class="form-control" name="regNr" placeholder="Search on Registration Number..." />
+               <div class="input-group-append">
+
+           <select class="form-control" name="type" asp-items="@await service.GetVehiclesType()">
+
+       <option selected="selected" value="">Please select</option>
+            </select>
+            </div>
+        <div class="input-group-append">
+            <button type="submit" class="btn btn-primary ms-2"><i class="fa fa-search">&emsp;Search</i></button>
+        </div>
+      </div>   
+   
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NumberSpot)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Occupied)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ArrivalTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RegNr)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FullName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberSpot)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Occupied)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ArrivalTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RegNr)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+            <td>
+                @if(item.Occupied == true)
+                {    
+                <a asp-action="Details" asp-route-id="@item.VehicleId" class="btn btn-danger btn-sm">Details</a>
+                <a asp-action="CheckOut" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Check Out</a>
+                }
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+

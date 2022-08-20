@@ -1,0 +1,38 @@
+﻿@model Garage2._0.Models.ParkedVehicle
+
+@{
+    ViewData["Title"] = "Home";
+}
+ <link rel="stylesheet" href="~/Design/site.css" asp-append-version="true" />
+
+<body>
+<h1 class="text-center">Welcome to Our Garage</h1>
+
+<h4 class="text-center">Price: $10 per hour</h4>
+<hr />
+        <div class="text-center ">
+           <div class="btn-group btn-group-justified" role="group" >
+               <div>
+
+                <a asp-controller="Vehicles"asp-action="Create" type="button" class="btn btn-success me-2" style="font-weight: bold">REGISTER NEW VEHICLE</a></div>
+                <a asp-controller="Members" asp-action="Create" type="button" class="btn btn-success me-2" style="font-weight: bold">REGISTER AS A NEW MEMBER</a>
+
+                <a asp-controller="Vehicles" asp-action="Park" type="button" class="btn btn-success me-2" style="font-weight: bold">PARK</a>
+                <a asp-controller="Vehicles" asp-action="Unpark" type="button" class="btn btn-danger me-2" style="font-weight: bold">UNPARK</a>
+               
+                @*<div class="form-group col-6">
+                    <input asp-action="Create" asp-controller="ParkedVehicles" type="submit" value="Park me" class="btn btn-primary mt-2" />
+                </div>
+                <div class="form-group col-6">
+                    <input type="submit" value="Unpark me" asp-action="unPark" asp-controller="ParkedVehicles" onclick= "enterId"class="btn btn-primary mt-2" />
+                </div>*@
+            
+                </div>
+        </div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+</body>

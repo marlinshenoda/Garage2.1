@@ -1,0 +1,100 @@
+﻿@model IEnumerable<Garage2._0.Models.Member>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="heads">Overview of existing members</h1>
+<form>
+    <div class="input-group mb-3 mt-3">
+        <input type="text" class="form-control" name="title" placeholder="Search Member by Name ..." />
+        
+        <div class="input-group-append">
+            <button asp-action="Filter" asp-controller="Members" type="submit" class="btn btn-primary ms-2"><i class="fa fa-search">&emsp;Search</i></button>
+        </div>
+         
+    
+    </div>
+</form>
+
+<p>
+    <a asp-action="Create" class="btn2 btn-success me-2 " style="font-weight:bold " >Create New Member</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PerNr)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PerNr)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id"  style="font-weight: bold" class="btn btn-success mt-2">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id" style="font-weight: bold" class="btn btn-success mt-2">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id" style="font-weight: bold" class="btn btn-danger mt-2">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+@*@section scripts{
+<script>
+
+$(function () {
+    $("body").on('click', '#btnDelete', function () {
+        $("#myModel").modal("hide");
+
+        var id = $(this).attr('data-id');
+ 
+        $.ajax({
+            url: 'PartialDelete',
+            data: { id },
+            success: function (response) {
+                $("#postPartial").html(response);
+                $("#myModel").modal("show");
+            }
+        });
+    });
+});
+
+$(function () {
+    $("body").on('click', '#btnDetails', function () {
+        $("#myModel").modal("hide");
+
+        var id = $(this).attr('data-id');
+ 
+        $.ajax({
+            url: 'PartialDetails',
+            data: { id },
+            success: function (response) {
+                $("#postPartial").html(response);
+                $("#myModel").modal("show");
+            }
+        });
+    });
+});
+</script>
+}
+*@

@@ -1,0 +1,125 @@
+﻿@model Garage2._0.Models.ViewModels.CheckOutViewModel
+
+@{
+    ViewData["Title"] = "Check Out";
+}
+<a asp-action="ParkingSpaceIndex"><i class="fa fa-chevron-left " style="color:black;"></i></a>
+<h1>Unpark</h1>
+
+<h3>Do you want to check out this vehicle?</h3>
+<div>
+  
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.RegNr)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.RegNr)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Color)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Color)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Brand)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Brand)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Model)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Model)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NrOfWheels)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NrOfWheels)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ArrivalTime)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ArrivalTime)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.LeaveTime)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.LeaveTime)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TimeParked)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TimeParked)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FullName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FullName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PerNr)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PerNr)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ParkSpace)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ParkSpace)
+        </dd>
+    </dl>
+    
+    <input type="submit" value="Unpark" onclick="showModel();" class="btn btn-danger"style="font-weight: bold">
+    @*<a asp-action="Index">Back to List</a>*@
+</div>
+
+
+           
+<div   id="myModel" class="modal fade text-width:30%;" style="position:fixed" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Hi </h2>
+                <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
+            </div>
+            <div id="MyModalAlert" class="modal-body alert alert-success ">
+                <h4> Checking out the @Html.DisplayFor(model => model.Type) with registration number: @Html.DisplayFor(model => model.RegNr). </h4>
+                <h2> Do you want your receipt?</h2> 
+            </div>
+            <div class="modal-footer">
+                <form asp-action="Receipt">
+                    <input type="hidden" asp-for="Id" />
+                    <input type="submit" value="Yes" class="btn btn-success" />
+                </form>
+                <form asp-action="ParkDelete">
+                    <input type="hidden" asp-for="Id" />
+                    <input type="submit" value="No" class="btn btn-danger" />
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+</div>

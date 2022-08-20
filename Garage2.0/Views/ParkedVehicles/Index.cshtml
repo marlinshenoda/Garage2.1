@@ -1,0 +1,140 @@
+﻿@model IEnumerable<Garage2._0.Models.ParkedVehicle>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+ <link rel="stylesheet" href="~/Design/site.css" asp-append-version="true" />
+
+<h1>List of all Vehicles</h1>
+
+
+@*<form>
+    <div class="input-group mb-3 mt-3">
+        <input type="text" class="form-control" name="title" placeholder="Search on Registration Number..." />
+        
+        <div class="input-group-append">
+            <button asp-action="Filter" asp-controller="ParkedVehicles" type="submit" class="btn btn-primary ms-2"><i class="fa fa-search">&emsp;Search</i></button>
+        </div>
+         
+        <div class="input-group-append ms-5">
+            <select class="form-control" name="Type" asp-items="@Html.GetEnumSelectList<VehicleType>()">
+                <option selected="selected" value="">Please select</option>
+            </select>
+        </div>
+        <div class="input-group-append">
+            <button asp-action="FilterType" asp-controller="ParkedVehicles" type="submit" class="btn btn-primary ms-2"><i class=" fa fa-check-square">&emsp;Choose</i></button>
+            </div>
+    </div>
+</form>*@
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RegNr)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Color)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Brand)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Model)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NrOfWheels)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ArrivalTime)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RegNr)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Color)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Brand)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Model)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NrOfWheels)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ArrivalTime)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Edit</a> |
+                <a href="#" id="btnDetails" class="btn btn-danger btn-sm" data-id="@item.Id">Details</a> |
+                <a href="#" id="btnDelete" class="btn btn-danger btn-sm" data-id="@item.Id">Check Out</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+@section scripts{
+<script>
+function openSuccessMOdel(strMessage) {
+    var myDiv = document.getElementById("MyModalAlert");
+    myDiv.innerHTML = strMessage;
+    $("#SuccessfulMessage").modal("show");
+   
+};
+$(document).ready(function(){
+    var msg = "@TempData["SuccessMessage"]";
+
+     if (msg) {
+        openSuccessMOdel(msg);
+    }
+});
+
+$(function () {
+    $("body").on('click', '#btnDelete', function () {
+        $("#myModel").modal("hide");
+
+        var id = $(this).attr('data-id');
+ 
+        $.ajax({
+            url: 'PartialDelete',
+            data: { id },
+            success: function (response) {
+                $("#postPartial").html(response);
+                $("#myModel").modal("show");
+            }
+        });
+    });
+});
+
+$(function () {
+    $("body").on('click', '#btnDetails', function () {
+        $("#myModel").modal("hide");
+
+        var id = $(this).attr('data-id');
+ 
+        $.ajax({
+            url: 'PartialDetails',
+            data: { id },
+            success: function (response) {
+                $("#postPartial").html(response);
+                $("#myModel").modal("show");
+            }
+        });
+    });
+});
+</script>
+}

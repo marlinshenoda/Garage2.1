@@ -1,0 +1,37 @@
+﻿
+@model Garage2._0.Models.SearchParkVehicleRegNrViewModel
+
+@{
+    ViewData["Title"] = "Park";
+}
+
+<h1>Park a car</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-controller="Vehicles" asp-action="ParkVehicle">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+            <div class="form-group">
+                <label asp-for="RegNr" class="control-label"></label>
+                <input asp-for="RegNr" class="form-control" />
+                <span asp-validation-for="RegNr" class="text-danger"></span>
+               
+            </div>
+            
+            
+            <div class="form-group ">
+                <input   type="submit" value="Park me" style="font-weight: bold" class="btn btn-danger mt-2" />
+            </div>
+                   
+        </form>
+        </div>
+ </div>
+
+ @section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

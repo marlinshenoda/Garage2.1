@@ -1,0 +1,166 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Garage2.0</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Garage2._0.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+
+<body class="bg bg-light ">
+    <header class="Header text-center ">
+     
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3 bg-white ">
+            
+            <div class="container-fluid fixed-top">
+                 
+                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                  </button>
+                 
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-center fixed-top center">
+                    <ul class="navbar-nav flex-grow-1 justify-content-center">
+                       
+                        <a class="navbar-link" asp-controller="ParkedVehicles" asp-action="Index" >
+                        
+                         
+                         <li class="nav-item">
+                            
+                            <a class="nav-link text-light " asp-area="" asp-controller="ParkedVehicles" asp-action="Home">Home  </a>
+                              
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Vehicles" asp-action="ParkingSpaceIndex">Parking Spaces  </a>
+                        </li>
+@*                        Member overview
+*@                       
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Members" asp-action="Index1"> All Members  </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Vehicles" asp-action="Index">Vehicles List </a>
+                        </li>
+                        @*<li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Members" asp-action="Index1">Details</a>
+                        </li>*@
+                        </a>  
+                        
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+ 
+          
+    </header>
+
+    
+         
+         <div class="row justtify-content-inline">
+              <div class="col-5 icon">
+                  <a><img class="img-fluid icon" src="~/css/city-car-svgrepo-com.svg"></a>
+               </div>
+
+              <div class="col-5 icon">
+              <a><img class=" img-fluid icon" src="~/css/motorcycle-bike-svgrepo-com.svg"></a>
+              </div>
+
+              <div class="col-5 icon">
+                 <a><img class="img-fluid icon" src="~/css/truck-svgrepo-com.svg"></a>
+              </div>
+
+              <div class="col-5 icon">
+              <a><img class="icon" src="~/css/plane-svgrepo-com (1).svg"></a>
+              </div>
+              
+
+               <div class="col-5 icon">
+               <a><img class="icon" src="~/css/yacht-boat-svgrepo-com.svg"> </a>
+               </div>
+              </div>
+
+             @* <ul>
+                <li>
+                <a><img class="icon" src="~/css/plane-svgrepo-com.svg"></a>    
+                </li>
+                <li>
+                      <a><img class="icon" src="~/css/yacht-boat-svgrepo-com.svg"> </a>
+                </li>
+                <li>
+                     <a><img class=" img-fluid icon" src="~/css/motorcycle-svgrepo-com.svg"></a>
+                </li>
+                <li>
+                    <a><img class="img-fluid icon" src="~/css/car-svgrepo-com.svg"></a>      
+                </li>
+                <li>
+                    <a><img class="img-fluid icon" src="~/css/truck-svgrepo-com.svg"></a>  
+                </li>
+
+               </ul>*@
+         @* </div>*@
+     
+    
+    <div class="container">
+        <main role="main" class="pb-3">
+              <div   id="SuccessfulMessage" class="modal fade text-width:30%;" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2>Information </h2>
+                            <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
+                        </div>
+                        <div  class="modal-body alert alert-success ">
+                            <h2 id="MyModalAlert"> Do you want your receipt?</h2> 
+
+                        </div>
+                        <div class="modal-footer">
+                          <button class="btn btn-success" data-bs-dismiss="modal">Ok</button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            @RenderBody()
+        </main>
+    </div>
+     
+   
+      
+   
+
+    <div id="myModel" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-bs-dismiss="modal">
+                        &times;
+                    </button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div id="postPartial"></div>
+            </div>
+        </div>
+    </div>
+
+    <br /><br />
+
+    <footer class="containerf" >
+        
+        &copy; Lexicon|2022 - Garage3.0 - Emil & Klara & Marlin & Enerida <a asp-area="" asp-controller="Home" asp-action="Privacy"></a>
+       
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

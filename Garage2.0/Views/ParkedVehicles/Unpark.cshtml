@@ -1,0 +1,40 @@
+﻿
+@model Garage2._0.Models.UnparkViewModel
+@{
+    ViewData["Title"] = "Unpark";
+}
+ <link rel="stylesheet" href="~/Design/site.css" asp-append-version="true" />
+<body>
+<h1 class="text-center">Unpark your car</h1>
+
+<h4 class="text-center">Price: $10 per hour</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-controller="ParkedVehicles" asp-action="GetVehicle">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+            <div class="form-group">
+                <label asp-for="RegNr" class="control-label"></label>
+                <input asp-for="RegNr" class="form-control" />
+                <span asp-validation-for="RegNr" class="text-danger"></span>
+               
+            </div>
+            
+            
+                <div class="form-group ">
+                    <input   type="submit" value="Unpark your car" style="font-weight: bold" class="btn btn-danger mt-2" />
+                </div>
+                
+           
+        </form>
+    </div>
+</div>
+
+                 
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+</body>
+

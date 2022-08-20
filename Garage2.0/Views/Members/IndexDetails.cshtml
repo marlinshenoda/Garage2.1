@@ -1,0 +1,44 @@
+﻿@model Garage2._0.Models.Member
+
+@{
+    ViewData["Title"] = "Details";
+    var name = Html.DisplayFor(model => model.FullName);
+    var title = "Number of Wehicles";
+    int nrOfVehicles =  Model.Vehicles.Count();
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>@name</h4>
+    <hr />
+    <dl class="row">
+  
+        <dt class="col-sm-2">
+            @title
+        </dt>
+          <dd class = "col-sm-10">
+               @nrOfVehicles
+          </dd>
+
+            @foreach(var vehicle in Model.Vehicles)
+            {  
+                
+         <dt class="col-sm-2">
+            @vehicle.Brand 
+        </dt>
+        
+        
+             <dd class = "col-sm-10">
+                @vehicle.RegNr<br/>
+             
+            </dd>
+            }
+                   
+        
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index1">Back to List</a>
+</div>
